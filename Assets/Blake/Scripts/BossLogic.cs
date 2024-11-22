@@ -12,12 +12,20 @@ namespace ElToro
         public Transform player;
         public NavMeshAgent agent;
         public StateMachine myStateMachine;
+        public Animator anim;
+        public Rigidbody rb;
+
+        public float NavSpeed;
 
 
         // Start is called before the first frame update
         void Start()
         {
             player = FindObjectOfType<PlayerLogic>().transform;
+
+            rb = GetComponent<Rigidbody>();
+
+            anim = GetComponent<Animator>();
 
             agent = GetComponent<NavMeshAgent>();
 
@@ -29,6 +37,8 @@ namespace ElToro
         // Update is called once per frame
         void Update()
         {
+            NavSpeed = Mathf.Sqrt(Mathf.Pow(agent.velocity.x, 2f) + Mathf.Pow(agent.velocity.z, 2f));
+            anim.SetFloat("speed", NavSpeed);
             myStateMachine.Update();
         }
 
