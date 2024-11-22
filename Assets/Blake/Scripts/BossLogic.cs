@@ -14,6 +14,7 @@ namespace ElToro
         public StateMachine myStateMachine;
         public Animator anim;
         public Rigidbody rb;
+        public bool PlayerInSight = false;
 
         public float NavSpeed;
 
@@ -42,12 +43,32 @@ namespace ElToro
             myStateMachine.Update();
         }
 
-        public Vector3 GetDirectionToPlayer()
+        private void FixedUpdate()
         {
-            var dirToPlayer = (player.transform.position - transform.position).normalized;
-            dirToPlayer.y = 0;
+            AttemptToSeePlayer();
+        }
 
-            return dirToPlayer;
+        void AttemptToSeePlayer()
+        {
+            Vector3 higherPos = new Vector3(transform.position.x, transform.position.y+2f, transform.position.z);
+            Vector3 directionToPlayer = (player.position - higherPos).normalized;
+            Vector3 forwardDirection = transform.forward;
+
+            float dot = Vector3.Dot(forwardDirection, directionToPlayer);
+            if (dot > 0.5f)
+            {
+                RaycastHit hit;
+                Physics.Raycast(higherPos, directionToPlayer, out hit, 100f);
+                if (hit.transform.gameObject == player.gameObject)
+                {
+                    //Debug.Log(gameObject.name + " sees the player!");
+                    PlayerInSight = true;
+                }
+                else
+                {
+                    PlayerInSight = false;
+                }
+            }
         }
 
         public Vector3? GetRandomPointInRange()

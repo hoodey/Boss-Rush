@@ -33,8 +33,11 @@ namespace ElToro
             {
                 RandomPatrol();
             }
+            if (BL.PlayerInSight)
+            {
+                machine.ChangeState(new PursueState(machine, BL));
+            }
         }
-
         public override void OnExit()
         {
             base.OnExit();
