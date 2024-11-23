@@ -1243,54 +1243,6 @@ Transform:
   - {fileID: 1246851457}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &785467536 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4414871117353324497, guid: aef9a3e063e740f4d8100584de73ceb4, type: 3}
-  m_PrefabInstance: {fileID: 1661982440}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &785467538
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 785467536}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 36d91920f1168024cad6f2f46528b94c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damageAmount: 2
-  knockbackForce: 1
-  hitEffectPrefab: {fileID: 6066822027452868663, guid: 23b574f9c07fefb48a1fe18fe736683a, type: 3}
-  hitSounds: {fileID: 11400000, guid: 63732e03242e01946b95049a50555f86, type: 2}
-  OnContact:
-    m_PersistentCalls:
-      m_Calls: []
-  OnSuccessfulHit:
-    m_PersistentCalls:
-      m_Calls: []
---- !u!65 &785467539
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 785467536}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 0
-  serializedVersion: 3
-  m_Size: {x: 0.24659778, y: 1.2177397, z: 1.5589278}
-  m_Center: {x: 0.47867066, y: 1.1231759, z: 0.32991502}
 --- !u!137 &851004199 stripped
 SkinnedMeshRenderer:
   m_CorrespondingSourceObject: {fileID: 4414871116202865221, guid: aef9a3e063e740f4d8100584de73ceb4, type: 3}
@@ -2975,6 +2927,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 4414871117303439920, guid: aef9a3e063e740f4d8100584de73ceb4, type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4414871117303439921, guid: aef9a3e063e740f4d8100584de73ceb4, type: 3}
       propertyPath: m_Name
       value: El Toro
@@ -3120,12 +3076,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4414871117303439921, guid: aef9a3e063e740f4d8100584de73ceb4, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1661982448}
-    - targetCorrespondingSourceObject: {fileID: 4414871117353324497, guid: aef9a3e063e740f4d8100584de73ceb4, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 785467539}
-    - targetCorrespondingSourceObject: {fileID: 4414871117353324497, guid: aef9a3e063e740f4d8100584de73ceb4, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 785467538}
   m_SourcePrefab: {fileID: 100100000, guid: aef9a3e063e740f4d8100584de73ceb4, type: 3}
 --- !u!4 &1661982441 stripped
 Transform:
@@ -3150,8 +3100,9 @@ MonoBehaviour:
   anim: {fileID: 0}
   rb: {fileID: 0}
   PlayerInSight: 0
-  meleeWeapon: {fileID: 785467539}
-  meleeSwingCooldown: 2
+  meleeWeapon: {fileID: 1858342425}
+  meleeSwingCooldown: 5
+  LastSwing: 0
   NavSpeed: 0
 --- !u!195 &1661982444
 NavMeshAgent:
