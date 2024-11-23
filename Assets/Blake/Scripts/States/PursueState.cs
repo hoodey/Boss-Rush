@@ -51,10 +51,5 @@ namespace ElToro
             base.OnExit();
             BL.agent.speed = 3.5f;
         }
-
-        public void OnEnterMelee()
-        {
-
-        }
     }
 }

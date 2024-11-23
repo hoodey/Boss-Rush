@@ -6,6 +6,7 @@ using UnityEngine.Events;
 public class Sensor : MonoBehaviour
 {
     public UnityEvent OnEnter;
+    public UnityEvent OnStay;
     public UnityEvent OnExit;
 
     private void OnTriggerEnter(Collider other)
@@ -16,5 +17,10 @@ public class Sensor : MonoBehaviour
     private void OnTriggerExit(Collider other)
     {
         OnExit?.Invoke();
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        OnStay?.Invoke();
     }
 }

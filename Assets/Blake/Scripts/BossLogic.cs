@@ -15,6 +15,8 @@ namespace ElToro
         public Animator anim;
         public Rigidbody rb;
         public bool PlayerInSight = false;
+        public Collider meleeWeapon;
+        public float meleeSwingCooldown = 2.0f;
 
         public float NavSpeed;
 
@@ -58,11 +60,13 @@ namespace ElToro
             if (dot > 0.5f)
             {
                 RaycastHit hit;
-                Physics.Raycast(higherPos, directionToPlayer, out hit, 100f);
-                if (hit.transform.gameObject == player.gameObject)
+                if(Physics.Raycast(higherPos, directionToPlayer, out hit, 100f))
                 {
-                    //Debug.Log(gameObject.name + " sees the player!");
-                    PlayerInSight = true;
+                    if (hit.transform.gameObject == player.gameObject)
+                    {
+                        //Debug.Log(gameObject.name + " sees the player!");
+                        PlayerInSight = true;
+                    }
                 }
                 else
                 {
@@ -85,6 +89,24 @@ namespace ElToro
             }
 
             return null;
+        }
+
+        public void OnEnterMelee()
+        {
+            myStateMachine.ChangeState(new MeleeState(myStateMachine, this));
+        }
+
+        public void OnStayMelee()
+        {
+            if (myStateMachine.currentState.elapsedTime >= meleeSwingCooldown)
+            {
+                myStateMachine.currentState.OnEnter();
+            }
+        }
+
+        public void OnExitMelee()
+        {
+            myStateMachine.ChangeState(new PursueState(myStateMachine, this));
         }
     }
 }
