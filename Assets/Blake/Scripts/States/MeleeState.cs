@@ -19,7 +19,7 @@ namespace ElToro
         {
             base.OnEnter();
             elapsedTime = 0f;
-            BL.agent.destination = BL.transform.position;
+            BL.agent.ResetPath();
             var dirToPlayer = (BL.player.transform.position - BL.transform.position).normalized;
             dirToPlayer.y = 0;
             BL.transform.forward = dirToPlayer;
@@ -33,7 +33,6 @@ namespace ElToro
 
         public override void OnExit()
         {
-
             base.OnExit();
         }
 

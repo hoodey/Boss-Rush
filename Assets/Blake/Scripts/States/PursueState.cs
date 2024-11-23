@@ -25,10 +25,10 @@ namespace ElToro
         public override void OnUpdate()
         {
             base.OnUpdate();
+
             if (BL.agent.destination != BL.player.position)
             {
                 BL.agent.SetDestination(BL.player.position);
-                //Debug.Log("Updated player position!");
             }
             if (BL.PlayerInSight)
             {

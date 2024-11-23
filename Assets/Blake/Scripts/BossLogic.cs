@@ -17,6 +17,7 @@ namespace ElToro
         public bool PlayerInSight = false;
         public Collider meleeWeapon;
         public float meleeSwingCooldown = 2.0f;
+        public float LastSwing = 0f;
 
         public float NavSpeed;
 
@@ -43,6 +44,7 @@ namespace ElToro
             NavSpeed = Mathf.Sqrt(Mathf.Pow(agent.velocity.x, 2f) + Mathf.Pow(agent.velocity.z, 2f));
             anim.SetFloat("speed", NavSpeed);
             myStateMachine.Update();
+            LastSwing += Time.deltaTime;
         }
 
         private void FixedUpdate()
@@ -93,20 +95,39 @@ namespace ElToro
 
         public void OnEnterMelee()
         {
-            myStateMachine.ChangeState(new MeleeState(myStateMachine, this));
+            if (LastSwing >= meleeSwingCooldown)
+            {
+                Debug.Log("First Attack");
+                myStateMachine.ChangeState(new MeleeState(myStateMachine, this));
+                LastSwing = 0f;
+            }
+
         }
 
         public void OnStayMelee()
         {
             if (myStateMachine.currentState.elapsedTime >= meleeSwingCooldown)
             {
+                Debug.Log("Attacking again");
                 myStateMachine.currentState.OnEnter();
             }
         }
 
         public void OnExitMelee()
         {
-            myStateMachine.ChangeState(new PursueState(myStateMachine, this));
+
+                Debug.Log("Switching to Pursue");
+                myStateMachine.ChangeState(new PursueState(myStateMachine, this));
+        }
+
+        public void HitBoxOn()
+        {
+            meleeWeapon.enabled = true;
+        }
+
+        public void HitBoxOff()
+        {
+            meleeWeapon.enabled = false;
         }
     }
 }
