@@ -106,10 +106,11 @@ namespace ElToro
 
         public void OnStayMelee()
         {
-            if (myStateMachine.currentState.elapsedTime >= meleeSwingCooldown)
+            if (LastSwing >= meleeSwingCooldown)
             {
                 Debug.Log("Attacking again");
-                myStateMachine.currentState.OnEnter();
+                myStateMachine.ChangeState(new MeleeState(myStateMachine, this));
+                LastSwing = 0f;
             }
         }
 

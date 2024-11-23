@@ -18,7 +18,6 @@ namespace ElToro
         public override void OnEnter()
         {
             base.OnEnter();
-            elapsedTime = 0f;
             BL.agent.ResetPath();
             var dirToPlayer = (BL.player.transform.position - BL.transform.position).normalized;
             dirToPlayer.y = 0;
