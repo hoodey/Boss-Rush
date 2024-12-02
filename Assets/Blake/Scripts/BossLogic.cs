@@ -47,6 +47,7 @@ namespace ElToro
             anim.SetFloat("speed", NavSpeed);
             myStateMachine.Update();
             LastSwing += Time.deltaTime;
+            Debug.Log(Vector3.Distance(player.position, transform.position));
         }
 
         private void FixedUpdate()
@@ -118,9 +119,7 @@ namespace ElToro
 
         public void OnExitMelee()
         {
-
-                Debug.Log("Switching to Pursue");
-                myStateMachine.ChangeState(new PursueState(myStateMachine, this));
+            StartCoroutine(meleeCooldown());
         }
 
         public void HitBoxOn()
@@ -136,6 +135,15 @@ namespace ElToro
         {
             Vector3 above = player.transform.position;
             GameObject p = Instantiate(rangedObject, above, Quaternion.identity);
+        }
+
+        IEnumerator meleeCooldown()
+        {
+            while (LastSwing < meleeSwingCooldown)
+            {
+                yield return new WaitForSeconds(0.2f);
+            }
+            myStateMachine.ChangeState(new PursueState(myStateMachine, this));
         }
     }
 }

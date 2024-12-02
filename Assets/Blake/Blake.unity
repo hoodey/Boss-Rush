@@ -2498,6 +2498,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4537132852034373435, guid: aef9a3e063e740f4d8100584de73ceb4, type: 3}
+      propertyPath: meleeSwingCooldown
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 5269007315196017275, guid: aef9a3e063e740f4d8100584de73ceb4, type: 3}
       propertyPath: OnInitialize.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -2506,6 +2510,10 @@ PrefabInstance:
       propertyPath: OnHealthChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1172069717}
+    - target: {fileID: 7279843614454415179, guid: aef9a3e063e740f4d8100584de73ceb4, type: 3}
+      propertyPath: m_UseGravity
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
