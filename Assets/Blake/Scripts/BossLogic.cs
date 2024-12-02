@@ -135,7 +135,6 @@ namespace ElToro
         public void RangedAttack()
         {
             Vector3 above = player.transform.position;
-            above.y = player.transform.position.y + 3.2f;
             GameObject p = Instantiate(rangedObject, above, Quaternion.identity);
         }
     }

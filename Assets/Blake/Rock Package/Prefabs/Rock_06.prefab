@@ -10,7 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 4000013213224824}
   - component: {fileID: 205000012753791500}
-  m_Layer: 0
+  - component: {fileID: 2940385463146299642}
+  - component: {fileID: 2477613072809289733}
+  - component: {fileID: 4442453326031557207}
+  m_Layer: 3
   m_Name: Rock_06
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27,8 +30,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 4000013334928464}
   - {fileID: 4000014037957788}
@@ -62,6 +65,66 @@ LODGroup:
     renderers:
     - renderer: {fileID: 23000010345550362}
   m_Enabled: 1
+--- !u!54 &2940385463146299642
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1000011143488790}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!135 &2477613072809289733
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1000011143488790}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 2
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &4442453326031557207
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1000011143488790}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0335ef4e1d3bd7545bed40f5a3468d46, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1000013438155918
 GameObject:
   m_ObjectHideFlags: 0
@@ -73,7 +136,7 @@ GameObject:
   - component: {fileID: 4000013334928464}
   - component: {fileID: 33000012003983462}
   - component: {fileID: 23000011723030366}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Rock_06_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -156,7 +219,7 @@ GameObject:
   - component: {fileID: 4000011222723220}
   - component: {fileID: 33000011351341720}
   - component: {fileID: 23000010345550362}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Rock_06_LOD2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -239,7 +302,7 @@ GameObject:
   - component: {fileID: 4000014037957788}
   - component: {fileID: 33000010114941522}
   - component: {fileID: 23000012633272854}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Rock_06_LOD1
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -28,6 +28,7 @@ namespace ElToro
 
             //ranged attack animation (with function trigger)
             BL.anim.SetTrigger("rangedAttack");
+            BL.transform.forward = dirToPlayer;
             base.OnEnter();
         }
 
