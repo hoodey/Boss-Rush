@@ -21,13 +21,13 @@ namespace ElToro
             //Stop patrol movement
             BL.agent.ResetPath();
             //Turn to player
-            BL.transform.forward = (BL.player.position - BL.transform.forward).normalized;
+            var dirToPlayer = (BL.player.transform.position - BL.transform.position).normalized;
+            dirToPlayer.y = 0;
+            BL.transform.forward = dirToPlayer;
             //Cue audio file of a grunt
-            
-            //Stomp or jump anim?
-            //BL.anim.SetTrigger("Stomp");
-            //Spawn prefab (function call on specific frame of animation)
 
+            //ranged attack animation (with function trigger)
+            BL.anim.SetTrigger("rangedAttack");
             base.OnEnter();
         }
 
