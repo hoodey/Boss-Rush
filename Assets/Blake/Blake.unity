@@ -3095,6 +3095,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   patrolRange: 20
+  rangedObject: {fileID: 3931190277378536239, guid: 36f88a047430f4e4780b27e200f61cb3, type: 3}
   player: {fileID: 0}
   agent: {fileID: 0}
   anim: {fileID: 0}
@@ -3103,6 +3104,7 @@ MonoBehaviour:
   meleeWeapon: {fileID: 1858342425}
   meleeSwingCooldown: 5
   LastSwing: 0
+  meleePursueRange: 30
   NavSpeed: 0
 --- !u!195 &1661982444
 NavMeshAgent:

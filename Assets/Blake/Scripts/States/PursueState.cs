@@ -17,6 +17,7 @@ namespace ElToro
         public override void OnEnter()
         {
             base.OnEnter();
+            BL.anim.SetBool("pursuing", true);
             BL.agent.SetDestination(BL.player.position);
             Debug.Log("Pursuing player!");
             BL.agent.speed = 5f;
@@ -49,6 +50,7 @@ namespace ElToro
         public override void OnExit()
         {
             base.OnExit();
+            BL.anim.SetBool("pursuing", false);
             BL.agent.speed = 3.5f;
         }
     }

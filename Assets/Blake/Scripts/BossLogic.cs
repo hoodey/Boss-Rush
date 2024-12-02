@@ -8,6 +8,7 @@ namespace ElToro
     public class BossLogic : MonoBehaviour
     {
         [SerializeField] float patrolRange;
+        [SerializeField] GameObject rangedObject;
         
         public Transform player;
         public NavMeshAgent agent;
@@ -18,6 +19,7 @@ namespace ElToro
         public Collider meleeWeapon;
         public float meleeSwingCooldown = 2.0f;
         public float LastSwing = 0f;
+        public float meleePursueRange = 30.0f;
 
         public float NavSpeed;
 
@@ -129,6 +131,10 @@ namespace ElToro
         public void HitBoxOff()
         {
             meleeWeapon.enabled = false;
+        }
+        public void RangedAttack()
+        {
+            GameObject p = Instantiate(rangedObject, player.transform.position, Quaternion.identity);
         }
     }
 }

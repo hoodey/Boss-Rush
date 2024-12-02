@@ -33,9 +33,16 @@ namespace ElToro
             {
                 RandomPatrol();
             }
-            if (BL.PlayerInSight)
+
+            Debug.Log(Vector3.Distance(BL.player.position, BL.transform.position));
+
+            if (BL.PlayerInSight && Vector3.Distance(BL.player.position, BL.transform.position) <= BL.meleePursueRange)
             {
                 machine.ChangeState(new PursueState(machine, BL));
+            }
+            else if (BL.PlayerInSight)
+            {
+                machine.ChangeState(new RangedState(machine, BL));
             }
         }
         public override void OnExit()
