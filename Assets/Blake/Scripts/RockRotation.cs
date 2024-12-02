@@ -38,10 +38,17 @@ public class RockRotation : MonoBehaviour
         {
             rotation = new Vector3(0, 0, 0);
         }
+
+        
     }
 
     private void FixedUpdate()
     {
         rb.AddTorque(rotation);
+    }
+
+    public void HitPlayer()
+    {
+        //Destroy(gameObject);
     }
 }

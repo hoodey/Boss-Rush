@@ -34,7 +34,7 @@ namespace ElToro
                 RandomPatrol();
             }
 
-            Debug.Log(Vector3.Distance(BL.player.position, BL.transform.position));
+            //Debug.Log(Vector3.Distance(BL.player.position, BL.transform.position));
 
             if (BL.PlayerInSight && Vector3.Distance(BL.player.position, BL.transform.position) <= BL.meleePursueRange)
             {

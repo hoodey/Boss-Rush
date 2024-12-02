@@ -96,6 +96,8 @@ GameObject:
   - component: {fileID: 442331376813950383}
   - component: {fileID: 7371603344990068382}
   - component: {fileID: 7765701801490151071}
+  - component: {fileID: 8799853026310146096}
+  - component: {fileID: 2556470845953244760}
   m_Layer: 3
   m_Name: Rock_04
   m_TagString: Untagged
@@ -190,11 +192,11 @@ SphereCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 2
+  m_Radius: 3
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &7765701801490151071
 MonoBehaviour:
@@ -208,6 +210,61 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0335ef4e1d3bd7545bed40f5a3468d46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &8799853026310146096
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1000011696945378}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36d91920f1168024cad6f2f46528b94c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageAmount: 5
+  knockbackForce: 100
+  hitEffectPrefab: {fileID: 2717892095994439559, guid: 7f6dafc4f0f90564395b340bbe141b85, type: 3}
+  hitSounds: {fileID: 11400000, guid: 49537a2ae8ff13640878c39d6843f2b1, type: 2}
+  OnContact:
+    m_PersistentCalls:
+      m_Calls: []
+  OnSuccessfulHit:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7765701801490151071}
+        m_TargetAssemblyTypeName: RockRotation, Assembly-CSharp
+        m_MethodName: HitPlayer
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!135 &2556470845953244760
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1000011696945378}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 2
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1000013427078568
 GameObject:
   m_ObjectHideFlags: 0

@@ -50,6 +50,7 @@ GameObject:
   - component: {fileID: 6856054444975635524}
   - component: {fileID: 1569446843601465957}
   - component: {fileID: 3866014354248445438}
+  - component: {fileID: 5109020307905198166}
   m_Layer: 0
   m_Name: Shadow
   m_TagString: Untagged
@@ -145,6 +146,18 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
+--- !u!114 &5109020307905198166
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8922555956661677966}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc7be334bd41e8b4480cfd1efb8a08f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &4253423868633085811
 PrefabInstance:
   m_ObjectHideFlags: 0
