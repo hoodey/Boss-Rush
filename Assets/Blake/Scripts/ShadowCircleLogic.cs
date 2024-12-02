@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class ShadowCircleLogic : MonoBehaviour
 {
-    float lifeTime = 2.6f;
+    float lifeTime = 2.5f;
     float lifeTimer = 0.0f;
+    bool changeMat = false;
+    [SerializeField] Material mat;
 
     // Start is called before the first frame update
     void Start()
@@ -21,9 +23,14 @@ public class ShadowCircleLogic : MonoBehaviour
         {
             transform.localScale = Vector3.Slerp(transform.localScale, (transform.localScale / 2f), 0.005f);
         }
-        else if (lifeTimer >= lifeTime )
+        else if (lifeTimer >= lifeTime && !changeMat)
         {
-            Destroy(gameObject);
+            gameObject.GetComponent<MeshRenderer>().material = mat;
+            changeMat = true;
+        }
+        else if (lifeTimer >= lifeTime + 2f)
+        {
+            Destroy(gameObject.transform.parent.gameObject);
         }
     }
 }

@@ -9,13 +9,14 @@ namespace ElToro
     {
         public BossLogic BL;
         public float deAggroTimer = 0.0f;
-        public float attackCD = 5.0f;
+        public float attackCD;
         public float attackTimer = 0.0f;
 
         public RangedState(StateMachine m, BossLogic BL) : base(m)
         {
             machine = m;
             this.BL = BL;
+            attackCD = BL.rangedAttackCD;
         }
 
         public override void OnEnter()
@@ -43,10 +44,15 @@ namespace ElToro
                 PerformRangedAttack();
                 attackTimer = 0.0f;
             }
+            else if (BL.PlayerInSight)
+            {
+                deAggroTimer = 0f;
+            }
             //out of view / deaggro
             else if (!BL.PlayerInSight)
             {
                 deAggroTimer += Time.deltaTime;
+                Debug.Log(deAggroTimer);
                 if (deAggroTimer >= attackCD)
                 {
                     machine.ChangeState(new PatrolState(machine, BL));

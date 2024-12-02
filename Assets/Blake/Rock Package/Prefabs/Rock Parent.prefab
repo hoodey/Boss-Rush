@@ -49,7 +49,6 @@ GameObject:
   - component: {fileID: 7090299237834800669}
   - component: {fileID: 6856054444975635524}
   - component: {fileID: 1569446843601465957}
-  - component: {fileID: 3866014354248445438}
   - component: {fileID: 5109020307905198166}
   m_Layer: 0
   m_Name: Shadow
@@ -67,7 +66,7 @@ Transform:
   m_GameObject: {fileID: 8922555956661677966}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -1, z: 0}
   m_LocalScale: {x: 7.977758, y: 0.095174655, z: 7.977758}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -123,29 +122,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &3866014354248445438
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8922555956661677966}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5000001
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
 --- !u!114 &5109020307905198166
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -158,6 +134,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc7be334bd41e8b4480cfd1efb8a08f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mat: {fileID: 2100000, guid: 2c53e2d0dbc311849ad4911814bf3d26, type: 2}
 --- !u!1001 &4253423868633085811
 PrefabInstance:
   m_ObjectHideFlags: 0

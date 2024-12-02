@@ -18,6 +18,7 @@ namespace ElToro
         public bool PlayerInSight = false;
         public Collider meleeWeapon;
         public float meleeSwingCooldown = 2.0f;
+        public float rangedAttackCD = 3f;
         public float LastSwing = 0f;
         public float meleePursueRange = 30.0f;
 
@@ -47,7 +48,6 @@ namespace ElToro
             anim.SetFloat("speed", NavSpeed);
             myStateMachine.Update();
             LastSwing += Time.deltaTime;
-            Debug.Log(Vector3.Distance(player.position, transform.position));
         }
 
         private void FixedUpdate()
@@ -65,6 +65,7 @@ namespace ElToro
             if (dot > 0.5f)
             {
                 RaycastHit hit;
+                
                 if(Physics.Raycast(higherPos, directionToPlayer, out hit, 100f))
                 {
                     if (hit.transform.gameObject == player.gameObject)
@@ -72,11 +73,19 @@ namespace ElToro
                         //Debug.Log(gameObject.name + " sees the player!");
                         PlayerInSight = true;
                     }
+                    else
+                    {
+                        PlayerInSight = false;
+                    }
                 }
                 else
                 {
                     PlayerInSight = false;
                 }
+            }
+            else
+            {
+                PlayerInSight = false;
             }
         }
 
