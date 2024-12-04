@@ -663,12 +663,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 315531601}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.020451233, y: 0.0000009536743, z: -19.368992}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 16.788614, y: -3.1520128, z: -8.983011}
   m_LocalScale: {x: 14.851, y: 11.277, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1679856892}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &319533194
 GameObject:
@@ -720,7 +720,19 @@ MonoBehaviour:
       m_Calls: []
   OnStay:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1661982443}
+        m_TargetAssemblyTypeName: ElToro.BossLogic, Assembly-CSharp
+        m_MethodName: OnStayKick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   OnExit:
     m_PersistentCalls:
       m_Calls: []
@@ -2574,12 +2586,36 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4537132852034373435, guid: aef9a3e063e740f4d8100584de73ceb4, type: 3}
+      propertyPath: damageable
+      value: 
+      objectReference: {fileID: 1661982442}
+    - target: {fileID: 4537132852034373435, guid: aef9a3e063e740f4d8100584de73ceb4, type: 3}
       propertyPath: rangedAttackCD
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4537132852034373435, guid: aef9a3e063e740f4d8100584de73ceb4, type: 3}
       propertyPath: meleeSwingCooldown
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5269007315196017275, guid: aef9a3e063e740f4d8100584de73ceb4, type: 3}
+      propertyPath: OnHit.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5269007315196017275, guid: aef9a3e063e740f4d8100584de73ceb4, type: 3}
+      propertyPath: OnHit.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5269007315196017275, guid: aef9a3e063e740f4d8100584de73ceb4, type: 3}
+      propertyPath: OnHit.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1661982443}
+    - target: {fileID: 5269007315196017275, guid: aef9a3e063e740f4d8100584de73ceb4, type: 3}
+      propertyPath: OnHit.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5269007315196017275, guid: aef9a3e063e740f4d8100584de73ceb4, type: 3}
+      propertyPath: OnHit.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: WhenHit
       objectReference: {fileID: 0}
     - target: {fileID: 5269007315196017275, guid: aef9a3e063e740f4d8100584de73ceb4, type: 3}
       propertyPath: OnInitialize.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -2589,6 +2625,14 @@ PrefabInstance:
       propertyPath: OnHealthChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1172069717}
+    - target: {fileID: 5269007315196017275, guid: aef9a3e063e740f4d8100584de73ceb4, type: 3}
+      propertyPath: OnHit.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: ElToro.BossLogic, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 5269007315196017275, guid: aef9a3e063e740f4d8100584de73ceb4, type: 3}
+      propertyPath: OnHit.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 7279843614454415179, guid: aef9a3e063e740f4d8100584de73ceb4, type: 3}
       propertyPath: m_UseGravity
       value: 1
@@ -2606,6 +2650,28 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4414871117303439923, guid: aef9a3e063e740f4d8100584de73ceb4, type: 3}
   m_PrefabInstance: {fileID: 1661982440}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1661982442 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5269007315196017275, guid: aef9a3e063e740f4d8100584de73ceb4, type: 3}
+  m_PrefabInstance: {fileID: 1661982440}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb936639cdd91de4b9956f37ee2ea8e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1661982443 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4537132852034373435, guid: aef9a3e063e740f4d8100584de73ceb4, type: 3}
+  m_PrefabInstance: {fileID: 1661982440}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 736581b510754d141a2857a34c489a6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1679856891
 GameObject:
   m_ObjectHideFlags: 0
@@ -2638,6 +2704,7 @@ Transform:
   - {fileID: 706707976}
   - {fileID: 1411538846}
   - {fileID: 1431130705}
+  - {fileID: 315531605}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1705712419
@@ -3019,4 +3086,3 @@ SceneRoots:
   - {fileID: 1679856892}
   - {fileID: 1064649182}
   - {fileID: 915546365}
-  - {fileID: 315531605}

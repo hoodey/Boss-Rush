@@ -21,6 +21,9 @@ namespace ElToro
         public float rangedAttackCD = 3f;
         public float LastSwing = 0f;
         public float meleePursueRange = 30.0f;
+        public bool kicking = false;
+        public float kickTimer = 0.0f;
+        public float timeSinceLastHit = 0.0f;
 
         public float NavSpeed;
 
@@ -48,6 +51,7 @@ namespace ElToro
             anim.SetFloat("speed", NavSpeed);
             myStateMachine.Update();
             LastSwing += Time.deltaTime;
+            timeSinceLastHit += Time.deltaTime;
         }
 
         private void FixedUpdate()
@@ -105,8 +109,25 @@ namespace ElToro
             return null;
         }
 
+        public void OnStayKick()
+        {
+            if (timeSinceLastHit < 3.0f)
+            {
+                kickTimer += Time.deltaTime;
+            }
+
+            if (kickTimer >= 5.0f)
+            {
+                myStateMachine.ChangeState(new KickState(myStateMachine, this));
+            }
+        }
+
         public void OnEnterMelee()
         {
+            if (kicking)
+            { 
+                return; 
+            }
             if (LastSwing >= meleeSwingCooldown)
             {
                 Debug.Log("First Attack");
@@ -118,6 +139,10 @@ namespace ElToro
 
         public void OnStayMelee()
         {
+            if (kicking)
+            {
+                return;
+            }
             if (LastSwing >= meleeSwingCooldown)
             {
                 Debug.Log("Attacking again");
@@ -128,7 +153,7 @@ namespace ElToro
 
         public void OnExitMelee()
         {
-            StartCoroutine(meleeCooldown());
+            StartCoroutine(MeleeCooldown());
         }
 
         public void HitBoxOn()
@@ -146,13 +171,18 @@ namespace ElToro
             GameObject p = Instantiate(rangedObject, above, Quaternion.identity);
         }
 
-        IEnumerator meleeCooldown()
+        IEnumerator MeleeCooldown()
         {
             while (LastSwing < meleeSwingCooldown)
             {
                 yield return new WaitForSeconds(0.2f);
             }
             myStateMachine.ChangeState(new PursueState(myStateMachine, this));
+        }
+
+        public void WhenHit()
+        {
+            timeSinceLastHit = 0.0f;
         }
     }
 }
