@@ -15,28 +15,12 @@ namespace ElToro
         public UnityEvent OnContact;
         public UnityEvent OnSuccessfulHit;
 
-        // Start is called before the first frame update
-        void Start()
-        {
-
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-
-        }
-
         private void OnTriggerEnter(Collider other)
         {
             OnContact?.Invoke();
 
             if (other.GetComponent<Damageable>())
             {
-                Vector3 dir = other.transform.position - transform.position;
-                dir.Normalize();
-
-                Debug.Log("test kick effect");
                 //Shoot the player up and away
                 var trajectory = other.transform.forward;
                 Quaternion rotation = Quaternion.AngleAxis(45, Vector3.right); // Rotate 45 degrees around the right axis

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -24,7 +25,7 @@ namespace ElToro
         public float LastSwing = 0f;
         public float meleePursueRange = 30.0f;
         public bool kicking = false;
-        public float kickCounter = 0f;
+        public int kickCounter = 0;
 
         public float NavSpeed;
 
@@ -115,9 +116,9 @@ namespace ElToro
             {
                 return;
             }
-            if (kickCounter >= 5.0f)
+            if (kickCounter >= 5)
             {
-                kickCounter = 0.0f;
+                kickCounter = 0;
                 kicking = true;
                 StaticInputManager.input.Disable();
                 myStateMachine.ChangeState(new KickState(myStateMachine, this));
@@ -126,7 +127,7 @@ namespace ElToro
 
         public void OnExitKick()
         {
-            kickCounter = 0.0f;
+            kickCounter = 0;
         }
 
         public void OnEnterMelee()
@@ -198,6 +199,14 @@ namespace ElToro
             {
                 myStateMachine.ChangeState(new PursueState(myStateMachine, this));
             }
+        }
+
+        public void OnFinishKick()
+        {
+            //code for handling after the kick finishes animation
+            StaticInputManager.input.Enable();
+            kicking = false;
+            myStateMachine.ChangeState(new IdleState(myStateMachine, this));
         }
 
         public void WhenHit()
