@@ -17,12 +17,14 @@ namespace ElToro
 
         public override void OnEnter()
         {
+            Debug.Log("Time to Kick!");
             base.OnEnter();
+            /*
             BL.agent.ResetPath();
             var dirToPlayer = (BL.player.transform.position - BL.transform.position).normalized;
             dirToPlayer.y = 0;
             BL.transform.forward = dirToPlayer;
-            BL.anim.SetTrigger("swing");
+            BL.anim.SetTrigger("swing");*/
         }
 
         public override void OnUpdate()

@@ -22,8 +22,7 @@ namespace ElToro
         public float LastSwing = 0f;
         public float meleePursueRange = 30.0f;
         public bool kicking = false;
-        public float kickTimer = 0.0f;
-        public float timeSinceLastHit = 0.0f;
+        public float kickCounter = 0f;
 
         public float NavSpeed;
 
@@ -51,7 +50,6 @@ namespace ElToro
             anim.SetFloat("speed", NavSpeed);
             myStateMachine.Update();
             LastSwing += Time.deltaTime;
-            timeSinceLastHit += Time.deltaTime;
         }
 
         private void FixedUpdate()
@@ -111,15 +109,21 @@ namespace ElToro
 
         public void OnStayKick()
         {
-            if (timeSinceLastHit < 3.0f)
+            if (kicking)
             {
-                kickTimer += Time.deltaTime;
+                return;
             }
-
-            if (kickTimer >= 5.0f)
+            if (kickCounter >= 5.0f)
             {
+                kickCounter = 0.0f;
+                kicking = true;
                 myStateMachine.ChangeState(new KickState(myStateMachine, this));
             }
+        }
+
+        public void OnExitKick()
+        {
+            kickCounter = 0.0f;
         }
 
         public void OnEnterMelee()
@@ -177,12 +181,15 @@ namespace ElToro
             {
                 yield return new WaitForSeconds(0.2f);
             }
-            myStateMachine.ChangeState(new PursueState(myStateMachine, this));
+            if (!kicking)
+            {
+                myStateMachine.ChangeState(new PursueState(myStateMachine, this));
+            }
         }
 
         public void WhenHit()
         {
-            timeSinceLastHit = 0.0f;
+            kickCounter++;
         }
     }
 }
