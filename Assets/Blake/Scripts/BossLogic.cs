@@ -9,6 +9,7 @@ namespace ElToro
     {
         [SerializeField] float patrolRange;
         [SerializeField] GameObject rangedObject;
+        [SerializeField] public Transform kickSpot;
         
         public Transform player;
         public NavMeshAgent agent;
@@ -17,6 +18,7 @@ namespace ElToro
         public Rigidbody rb;
         public bool PlayerInSight = false;
         public Collider meleeWeapon;
+        public Collider foot;
         public float meleeSwingCooldown = 2.0f;
         public float rangedAttackCD = 3f;
         public float LastSwing = 0f;
@@ -117,6 +119,7 @@ namespace ElToro
             {
                 kickCounter = 0.0f;
                 kicking = true;
+                StaticInputManager.input.Disable();
                 myStateMachine.ChangeState(new KickState(myStateMachine, this));
             }
         }
@@ -162,11 +165,21 @@ namespace ElToro
 
         public void HitBoxOn()
         {
+            if (kicking)
+            {
+                foot.enabled = true;
+                return;
+            }
             meleeWeapon.enabled = true;
         }
 
         public void HitBoxOff()
         {
+            if (kicking)
+            {
+                foot.enabled = false;
+                return;
+            }
             meleeWeapon.enabled = false;
         }
         public void RangedAttack()
