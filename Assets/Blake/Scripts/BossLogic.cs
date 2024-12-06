@@ -8,15 +8,25 @@ namespace ElToro
 {
     public class BossLogic : MonoBehaviour
     {
+        enum Phase
+        {
+            ONE,
+            TWO,
+            THREE
+        }
+
         [SerializeField] float patrolRange;
         [SerializeField] GameObject rangedObject;
         [SerializeField] public Transform kickSpot;
-        
+        [SerializeField] GameObject fireBreath;
+
+        public float maxHealth = 100f;
         public Transform player;
         public NavMeshAgent agent;
         public StateMachine myStateMachine;
         public Animator anim;
         public Rigidbody rb;
+        public Damageable myDamage;
         public bool PlayerInSight = false;
         public Collider meleeWeapon;
         public Collider foot;
@@ -26,6 +36,7 @@ namespace ElToro
         public float meleePursueRange = 30.0f;
         public bool kicking = false;
         public int kickCounter = 0;
+        Phase currentPhase;
 
         public float NavSpeed;
 
@@ -44,6 +55,8 @@ namespace ElToro
             myStateMachine = new StateMachine();
 
             myStateMachine.ChangeState(new IdleState(myStateMachine, this));
+
+            myDamage = GetComponent<Damageable>();
         }
 
         // Update is called once per frame
@@ -53,6 +66,21 @@ namespace ElToro
             anim.SetFloat("speed", NavSpeed);
             myStateMachine.Update();
             LastSwing += Time.deltaTime;
+
+            if (myDamage.GetCurrentHealth()/maxHealth >= 0.75f)
+            {
+                currentPhase = Phase.ONE;
+            }
+            else if (myDamage.GetCurrentHealth()/maxHealth >= 0.50f && myDamage.GetCurrentHealth()/maxHealth < 0.75f)
+            {
+                currentPhase = Phase.TWO;
+            }
+            else if (myDamage.GetCurrentHealth() / maxHealth <= 0.50f)
+            {
+                currentPhase = Phase.THREE;
+            }
+
+
         }
 
         private void FixedUpdate()
