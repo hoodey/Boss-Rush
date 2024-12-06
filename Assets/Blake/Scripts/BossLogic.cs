@@ -88,6 +88,14 @@ namespace ElToro
                 agent.speed = 9f;
             }
 
+            if (Input.GetButtonDown("Jump"))
+            {
+                fireBreath.GetComponent<ParticleSystem>().Play();
+            }
+            else if (Input.GetButtonDown("Jump"))
+            {
+                fireBreath.GetComponent<ParticleSystem>().Stop();
+            }
 
         }
 

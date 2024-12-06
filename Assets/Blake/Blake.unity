@@ -1421,7 +1421,8 @@ GameObject:
   - component: {fileID: 877306937}
   - component: {fileID: 877306939}
   - component: {fileID: 877306938}
-  m_Layer: 7
+  - component: {fileID: 877306940}
+  m_Layer: 9
   m_Name: FireBreath
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5285,11 +5286,11 @@ ParticleSystem:
     radiusScale: 1
     collidesWith:
       serializedVersion: 2
-      m_Bits: 4294967295
+      m_Bits: 72
     maxCollisionShapes: 256
     quality: 0
     voxelSize: 0.5
-    collisionMessages: 0
+    collisionMessages: 1
     collidesWithDynamic: 1
     interiorCollisions: 0
   TriggerModule:
@@ -6250,6 +6251,19 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
+--- !u!114 &877306940
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 877306936}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec86043392d64a948b27e8146d8ced35, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  part: {fileID: 0}
 --- !u!1 &915546364
 GameObject:
   m_ObjectHideFlags: 0
