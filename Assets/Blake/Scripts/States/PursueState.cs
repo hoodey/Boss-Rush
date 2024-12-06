@@ -19,7 +19,6 @@ namespace ElToro
             base.OnEnter();
             BL.anim.SetBool("pursuing", true);
             BL.agent.SetDestination(BL.player.position);
-            Debug.Log("Pursuing player!");
             BL.agent.speed = 5f;
         }
 

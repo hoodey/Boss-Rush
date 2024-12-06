@@ -18,28 +18,29 @@ namespace ElToro
         {
             Debug.Log("Entered Patrol State");
             base.OnEnter();
+            //Choose an initial patrol
             RandomPatrol();
         }
 
         public override void OnUpdate()
         {
             base.OnUpdate();
+            //If we reach our destination, pick a new spot and patrol
             if (BL.transform.position == PatrolPosition)
             {
-                Debug.Log("Pathing to a new point");
                 RandomPatrol();
             }
+            //If we choose a location that doesn't exist, choose a new one
             if (PatrolPosition == null)
             {
                 RandomPatrol();
             }
-
-            //Debug.Log(Vector3.Distance(BL.player.position, BL.transform.position));
-
+            //This code handles transitioning to a melee pursue state
             if (BL.PlayerInSight && Vector3.Distance(BL.player.position, BL.transform.position) <= BL.meleePursueRange)
             {
                 machine.ChangeState(new PursueState(machine, BL));
             }
+            //This code will start ranged attacks because player is not close enough to start pursuing
             else if (BL.PlayerInSight)
             {
                 machine.ChangeState(new RangedState(machine, BL));
@@ -50,12 +51,12 @@ namespace ElToro
             base.OnExit();
         }
 
+        //Function for patrolling
         public void RandomPatrol()
         {
 
             PatrolPosition = BL.GetRandomPointInRange();
             
-            Debug.Log(PatrolPosition);
             if (PatrolPosition != null)
             {
                 BL.agent.SetDestination(PatrolPosition.Value);

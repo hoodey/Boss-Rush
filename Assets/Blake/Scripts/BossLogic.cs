@@ -211,6 +211,11 @@ namespace ElToro
 
         public void WhenHit()
         {
+            if (myStateMachine.currentState.ToString() == "ElToro.PatrolState" || myStateMachine.currentState.ToString() == "ElToro.IdleState")
+            {
+                myStateMachine.ChangeState(new PursueState(myStateMachine, this));
+            }
+            anim.SetTrigger("gotHit");
             kickCounter++;
         }
     }

@@ -66,7 +66,6 @@ namespace ElToro
 
         public override void OnExit()
         {
-            Debug.Log("Exited Ranged State");
             base.OnExit();
         }
 
