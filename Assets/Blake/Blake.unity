@@ -7214,6 +7214,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8267154829788579919, guid: 0ca589b17b2fa29408d099352b8407c0, type: 3}
+      propertyPath: damageAmount
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8267154829788579919, guid: 0ca589b17b2fa29408d099352b8407c0, type: 3}
       propertyPath: OnSuccessfulHit.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1725619464}
@@ -7569,6 +7573,14 @@ PrefabInstance:
       propertyPath: damageable
       value: 
       objectReference: {fileID: 1661982442}
+    - target: {fileID: 4537132852034373435, guid: aef9a3e063e740f4d8100584de73ceb4, type: 3}
+      propertyPath: fireBreath
+      value: 
+      objectReference: {fileID: 877306936}
+    - target: {fileID: 4537132852034373435, guid: aef9a3e063e740f4d8100584de73ceb4, type: 3}
+      propertyPath: hitsToKick
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 4537132852034373435, guid: aef9a3e063e740f4d8100584de73ceb4, type: 3}
       propertyPath: rangedAttackCD
       value: 3

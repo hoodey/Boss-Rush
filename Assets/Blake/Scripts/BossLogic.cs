@@ -36,6 +36,7 @@ namespace ElToro
         public float meleePursueRange = 30.0f;
         public bool kicking = false;
         public int kickCounter = 0;
+        public int hitsToKick = 0;
         Phase currentPhase;
 
         public float NavSpeed;
@@ -66,18 +67,25 @@ namespace ElToro
             anim.SetFloat("speed", NavSpeed);
             myStateMachine.Update();
             LastSwing += Time.deltaTime;
+            Debug.Log(agent.speed);
 
-            if (myDamage.GetCurrentHealth()/maxHealth >= 0.75f)
+            if (myDamage.GetCurrentHealth()/maxHealth >= 0.75f && currentPhase != Phase.ONE)
             {
                 currentPhase = Phase.ONE;
+                agent.speed = 5f;
             }
-            else if (myDamage.GetCurrentHealth()/maxHealth >= 0.50f && myDamage.GetCurrentHealth()/maxHealth < 0.75f)
+            else if (myDamage.GetCurrentHealth()/maxHealth >= 0.50f && myDamage.GetCurrentHealth()/maxHealth < 0.75f && currentPhase != Phase.TWO)
             {
                 currentPhase = Phase.TWO;
+                meleeSwingCooldown = 1.5f;
+                rangedAttackCD = 2f;
+                agent.speed = 7f;
+                hitsToKick = 3;
             }
-            else if (myDamage.GetCurrentHealth() / maxHealth <= 0.50f)
+            else if (myDamage.GetCurrentHealth() / maxHealth <= 0.50f && currentPhase != Phase.THREE)
             {
                 currentPhase = Phase.THREE;
+                agent.speed = 9f;
             }
 
 
@@ -144,7 +152,7 @@ namespace ElToro
             {
                 return;
             }
-            if (kickCounter >= 5)
+            if (kickCounter >= hitsToKick)
             {
                 kickCounter = 0;
                 kicking = true;
@@ -243,7 +251,12 @@ namespace ElToro
             {
                 myStateMachine.ChangeState(new PursueState(myStateMachine, this));
             }
-            anim.SetTrigger("gotHit");
+            //anim.SetTrigger("gotHit");
+
+            //Set variables according to phase
+            
+
+            //Handle queueing up a kick
             kickCounter++;
         }
     }

@@ -16,7 +16,6 @@ namespace ElToro
 
         public override void OnEnter()
         {
-            Debug.Log("Entered Patrol State");
             base.OnEnter();
             //Choose an initial patrol
             RandomPatrol();
