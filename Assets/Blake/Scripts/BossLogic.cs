@@ -8,7 +8,7 @@ namespace ElToro
 {
     public class BossLogic : MonoBehaviour
     {
-        enum Phase
+        public enum Phase
         {
             ONE,
             TWO,
@@ -37,6 +37,8 @@ namespace ElToro
         public bool kicking = false;
         public int kickCounter = 0;
         public int hitsToKick = 0;
+        public float ultimateAttackCD = 5.0f;
+        public ParticleSystem firePS;
         Phase currentPhase;
 
         public float NavSpeed;
@@ -58,6 +60,8 @@ namespace ElToro
             myStateMachine.ChangeState(new IdleState(myStateMachine, this));
 
             myDamage = GetComponent<Damageable>();
+
+            firePS = fireBreath.GetComponent<ParticleSystem>();
         }
 
         // Update is called once per frame
@@ -86,6 +90,7 @@ namespace ElToro
             {
                 currentPhase = Phase.THREE;
                 agent.speed = 9f;
+                meleePursueRange = 15f;
             }
 
         }
@@ -224,6 +229,26 @@ namespace ElToro
             GameObject p = Instantiate(rangedObject, above, Quaternion.identity);
         }
 
+        public void UltimateAttack()
+        {
+            StartCoroutine(UltimateAttackProcess());
+        }
+
+        IEnumerator UltimateAttackProcess()
+        {
+            float fireBreathDuration = 0.0f;
+            firePS.Play();
+            while (fireBreathDuration < 5.0f)
+            {
+                var dirToPlayer = (player.transform.position - transform.position).normalized;
+                dirToPlayer.y = 0;
+                transform.forward = dirToPlayer;
+                fireBreathDuration += 0.1f;
+                yield return new WaitForSeconds(0.1f);
+            }
+            firePS.Stop();
+        }
+
         IEnumerator MeleeCooldown()
         {
             while (LastSwing < meleeSwingCooldown)
@@ -257,6 +282,11 @@ namespace ElToro
 
             //Handle queueing up a kick
             kickCounter++;
+        }
+
+        public Phase GetCurrentPhase()
+        {
+            return currentPhase;
         }
     }
 }

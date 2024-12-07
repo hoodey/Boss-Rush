@@ -40,9 +40,13 @@ namespace ElToro
                 machine.ChangeState(new PursueState(machine, BL));
             }
             //This code will start ranged attacks because player is not close enough to start pursuing
-            else if (BL.PlayerInSight)
+            else if (BL.PlayerInSight && (BL.GetCurrentPhase() == BossLogic.Phase.ONE || BL.GetCurrentPhase() == BossLogic.Phase.TWO))
             {
                 machine.ChangeState(new RangedState(machine, BL));
+            }
+            else if (BL.PlayerInSight && BL.GetCurrentPhase() == BossLogic.Phase.THREE)
+            {
+                machine.ChangeState(new UltimateState(machine, BL));
             }
         }
         public override void OnExit()

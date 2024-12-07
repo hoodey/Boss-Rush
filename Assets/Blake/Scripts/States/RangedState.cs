@@ -21,7 +21,6 @@ namespace ElToro
 
         public override void OnEnter()
         {
-            Debug.Log("Entered Ranged State");
             PerformRangedAttack();
             base.OnEnter();
         }
