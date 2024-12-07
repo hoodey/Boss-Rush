@@ -18,7 +18,7 @@ namespace ElToro
         {
             base.OnEnter();
             //Choose an initial patrol
-            RandomPatrol();
+            //RandomPatrol();
         }
 
         public override void OnUpdate()

@@ -17,12 +17,18 @@ namespace ElToro
         // Start is called before the first frame update
         void Start()
         {
+
+        }
+
+        private void OnEnable()
+        {
             rb = GetComponent<Rigidbody>();
             lifeTime = Random.Range(3.0f, 5.0f);
             xRotate = Random.Range(-50, 50);
             zRotate = Random.Range(-50, 50);
             rotation = new Vector3(xRotate, 0, zRotate);
         }
+
 
         // Update is called once per frame
         void Update()

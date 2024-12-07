@@ -236,17 +236,18 @@ namespace ElToro
 
         IEnumerator UltimateAttackProcess()
         {
-            float fireBreathDuration = 0.0f;
+            //float fireBreathDuration = 0.0f;
             firePS.Play();
-            while (fireBreathDuration < 5.0f)
+            /*while (fireBreathDuration < 5.0f)
             {
                 var dirToPlayer = (player.transform.position - transform.position).normalized;
                 dirToPlayer.y = 0;
                 transform.forward = dirToPlayer;
                 fireBreathDuration += 0.1f;
-                yield return new WaitForSeconds(0.1f);
-            }
+            }*/
+                yield return new WaitForSeconds(5.0f);
             firePS.Stop();
+            myStateMachine.ChangeState(new PatrolState(myStateMachine, this));
         }
 
         IEnumerator MeleeCooldown()
