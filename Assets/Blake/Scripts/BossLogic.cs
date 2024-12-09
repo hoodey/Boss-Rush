@@ -75,14 +75,14 @@ namespace ElToro
             if (myDamage.GetCurrentHealth()/maxHealth >= 0.75f && currentPhase != Phase.ONE)
             {
                 currentPhase = Phase.ONE;
-                agent.speed = 5f;
+                agent.speed = 4f;
             }
             else if (myDamage.GetCurrentHealth()/maxHealth >= 0.50f && myDamage.GetCurrentHealth()/maxHealth < 0.75f && currentPhase != Phase.TWO)
             {
                 currentPhase = Phase.TWO;
                 meleeSwingCooldown = 1.5f;
                 rangedAttackCD = 2f;
-                agent.speed = 7f;
+                agent.speed = 6f;
                 hitsToKick = 3;
             }
             else if (myDamage.GetCurrentHealth() / maxHealth <= 0.50f && currentPhase != Phase.THREE)
