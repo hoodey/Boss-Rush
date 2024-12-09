@@ -21,6 +21,9 @@ namespace ElToro
         [SerializeField] GameObject fireBreath;
         [SerializeField] Transform fireBreathSpot;
         [SerializeField] public GameManager gm;
+        [SerializeField] AudioClip kickRoar;
+        [SerializeField] AudioClip phase3Roar;
+        [SerializeField] AudioClip rangedRoar;
 
         public float maxHealth = 100f;
         public Transform player;
@@ -93,6 +96,7 @@ namespace ElToro
                 meleePursueRange = 15f;
                 meleeSwingCooldown = 0.5f;
                 hitsToKick = 10;
+                SoundEffectsManager.instance.PlayAudioClip(phase3Roar, true);
             }
 
             if (currentPhase == Phase.THREE)
@@ -230,6 +234,7 @@ namespace ElToro
         }
         public void RangedAttack()
         {
+            SoundEffectsManager.instance.PlayAudioClip(rangedRoar, true);
             Vector3 above = player.transform.position;
             GameObject p = Instantiate(rangedObject, above, Quaternion.identity);
         }
@@ -278,6 +283,12 @@ namespace ElToro
             }
             //Animation for being hit (was causing bugs)
             //anim.SetTrigger("gotHit");            
+
+            //Handle warning noise for upcoming kick
+            if (kickCounter == hitsToKick -1)
+            {
+                SoundEffectsManager.instance.PlayAudioClip(kickRoar, true);
+            }
 
             //Handle queueing up a kick
             kickCounter++;

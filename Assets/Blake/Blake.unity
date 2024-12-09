@@ -1611,7 +1611,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &564404661
 Transform:
   m_ObjectHideFlags: 0
@@ -5601,7 +5601,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 278217275421810622, guid: 0ca589b17b2fa29408d099352b8407c0, type: 3}
       propertyPath: moveSpeed
-      value: 10
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 278217275421810622, guid: 0ca589b17b2fa29408d099352b8407c0, type: 3}
       propertyPath: OnStartDash.m_PersistentCalls.m_Calls.Array.data[3].m_Target
@@ -5622,6 +5622,10 @@ PrefabInstance:
     - target: {fileID: 1980485172437200187, guid: 0ca589b17b2fa29408d099352b8407c0, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3010561187225651190, guid: 0ca589b17b2fa29408d099352b8407c0, type: 3}
+      propertyPath: maxHealth
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 3010561187225651190, guid: 0ca589b17b2fa29408d099352b8407c0, type: 3}
       propertyPath: OnHit.m_PersistentCalls.m_Calls.Array.data[1].m_Target
@@ -6032,9 +6036,21 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1725619464}
     - target: {fileID: 4537132852034373435, guid: aef9a3e063e740f4d8100584de73ceb4, type: 3}
+      propertyPath: kickRoar
+      value: 
+      objectReference: {fileID: 8300000, guid: 0e68ae39650e39b4c8ef1e819bac6b87, type: 3}
+    - target: {fileID: 4537132852034373435, guid: aef9a3e063e740f4d8100584de73ceb4, type: 3}
       propertyPath: kickSpot
       value: 
       objectReference: {fileID: 146656044}
+    - target: {fileID: 4537132852034373435, guid: aef9a3e063e740f4d8100584de73ceb4, type: 3}
+      propertyPath: phase3Roar
+      value: 
+      objectReference: {fileID: 8300000, guid: f5cc1eb18e57a424689ad93884e44013, type: 3}
+    - target: {fileID: 4537132852034373435, guid: aef9a3e063e740f4d8100584de73ceb4, type: 3}
+      propertyPath: rangedRoar
+      value: 
+      objectReference: {fileID: 8300000, guid: 9aa6823d943642c4aa1675fba62c9689, type: 3}
     - target: {fileID: 5269007315196017275, guid: aef9a3e063e740f4d8100584de73ceb4, type: 3}
       propertyPath: OnInitialize.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 

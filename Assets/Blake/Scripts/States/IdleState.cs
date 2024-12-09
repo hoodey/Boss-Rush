@@ -17,7 +17,6 @@ namespace ElToro
 
         public override void OnEnter()
         {
-            Debug.Log("Entered Idle");
             base.OnEnter();
         }
 
@@ -32,7 +31,6 @@ namespace ElToro
 
         public override void OnExit()
         {
-            Debug.Log("Exited Idle");
             base.OnExit();
         }
     }
