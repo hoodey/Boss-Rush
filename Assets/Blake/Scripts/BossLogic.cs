@@ -21,9 +21,12 @@ namespace ElToro
         [SerializeField] GameObject fireBreath;
         [SerializeField] Transform fireBreathSpot;
         [SerializeField] public GameManager gm;
-        [SerializeField] AudioClip kickRoar;
-        [SerializeField] AudioClip phase3Roar;
-        [SerializeField] AudioClip rangedRoar;
+        [SerializeField] public AudioClip kickRoar;
+        [SerializeField] public AudioClip phase3Roar;
+        [SerializeField] public AudioClip rangedRoar;
+        [SerializeField] public AudioClip rocks;
+        [SerializeField] Material phase3Mat;
+        [SerializeField] SkinnedMeshRenderer[] meshesToChange;
 
         public float maxHealth = 100f;
         public Transform player;
@@ -63,8 +66,6 @@ namespace ElToro
 
             myStateMachine = new StateMachine();
 
-            myStateMachine.ChangeState(new IdleState(myStateMachine, this));
-
             myDamage = GetComponent<Damageable>();
         }
 
@@ -95,8 +96,12 @@ namespace ElToro
                 agent.speed = 9f;
                 meleePursueRange = 15f;
                 meleeSwingCooldown = 0.5f;
-                hitsToKick = 10;
+                hitsToKick = 4;
                 SoundEffectsManager.instance.PlayAudioClip(phase3Roar, true);
+                foreach(SkinnedMeshRenderer s in meshesToChange)
+                {
+                    s.material = phase3Mat;
+                }
             }
 
             if (currentPhase == Phase.THREE)
@@ -166,6 +171,13 @@ namespace ElToro
             {
                 return;
             }
+            if (kickCounter >= hitsToKick && currentPhase == Phase.THREE && !isDead)
+            {
+                kickCounter = 0;
+                kicking = true;
+                StaticInputManager.input.Disable();
+                myStateMachine.ChangeState(new UltimateState(myStateMachine, this));
+            }
             if (kickCounter >= hitsToKick && !isDead)
             {
                 kickCounter = 0;
@@ -234,7 +246,6 @@ namespace ElToro
         }
         public void RangedAttack()
         {
-            SoundEffectsManager.instance.PlayAudioClip(rangedRoar, true);
             Vector3 above = player.transform.position;
             GameObject p = Instantiate(rangedObject, above, Quaternion.identity);
         }
@@ -243,15 +254,18 @@ namespace ElToro
         {
             if (lastFireBreath >= ultimateAttackCD)
             {
-                GameObject f = Instantiate(fireBreath, fireBreathSpot.position, fireBreathSpot.rotation);
+                
                 StartCoroutine(UltimateAttackProcess());
             }
         }
 
         IEnumerator UltimateAttackProcess()
         {
+            yield return new WaitForSeconds(0.1f);
+            GameObject f = Instantiate(fireBreath, fireBreathSpot.position, fireBreathSpot.rotation);
             yield return new WaitForSeconds(5.0f);
             lastFireBreath = 0.0f;
+            OnFinishKick();
             myStateMachine.ChangeState(new PatrolState(myStateMachine, this));
         }
 
@@ -280,18 +294,14 @@ namespace ElToro
             if (myStateMachine.currentState.ToString() == "ElToro.PatrolState" || myStateMachine.currentState.ToString() == "ElToro.IdleState")
             {
                 myStateMachine.ChangeState(new PursueState(myStateMachine, this));
-            }
-            //Animation for being hit (was causing bugs)
-            //anim.SetTrigger("gotHit");            
+            }       
 
-            //Handle warning noise for upcoming kick
+            //Handle queueing up a kick
+            kickCounter++;
             if (kickCounter == hitsToKick -1)
             {
                 SoundEffectsManager.instance.PlayAudioClip(kickRoar, true);
             }
-
-            //Handle queueing up a kick
-            kickCounter++;
         }
 
         public void die()

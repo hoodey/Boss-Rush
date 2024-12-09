@@ -1,41 +1,53 @@
+using ElToro;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DoorLogic : MonoBehaviour
+namespace ElToro
 {
-    [SerializeField] GameObject door;
-    [SerializeField] float finalHeight;
-    Vector3 finalPos;
-    bool doorOpen = false;
-
-    // Start is called before the first frame update
-    void Start()
+    public class DoorLogic : MonoBehaviour
     {
-        finalPos = new Vector3(door.transform.position.x, finalHeight, door.transform.position.z);
+        [SerializeField] GameObject door;
+        [SerializeField] float finalHeight;
+        [SerializeField] int doorNum;
+        Vector3 finalPos;
+        bool doorOpen = false;
+        [SerializeField] BossLogic BL;
 
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if (doorOpen && door.transform.position != finalPos)
+        // Start is called before the first frame update
+        void Start()
         {
-            OpenDoor();
-        }
-    }
+            finalPos = new Vector3(door.transform.position.x, finalHeight, door.transform.position.z);
 
-    public void OnTriggerEnter(Collider collision)
-    {
-        if (collision.gameObject.name == "Player")
+        }
+
+        // Update is called once per frame
+        void Update()
         {
-            doorOpen = true;
+            if (doorOpen && door.transform.position != finalPos)
+            {
+                OpenDoor();
+            }
+
         }
-    }
 
-    void OpenDoor()
-    {
+        public void OnTriggerEnter(Collider collision)
+        {
+            if (collision.gameObject.name == "Player")
+            {
+                doorOpen = true;
+            }
+            if (doorNum == 2)
+            {
+                BL.myStateMachine.ChangeState(new IdleState(BL.myStateMachine, BL));
+            }
+        }
 
-        door.transform.position = Vector3.Lerp(door.transform.position, finalPos, 0.01f);
+        void OpenDoor()
+        {
+
+            door.transform.position = Vector3.Lerp(door.transform.position, finalPos, 0.01f);
+        }
     }
 }
+

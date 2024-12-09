@@ -15,7 +15,10 @@ namespace ElToro
 
         public void Update()
         {
-            currentState.OnUpdate();
+            if (currentState != null)
+            {
+                currentState.OnUpdate();
+            }
         }
 
         public void ChangeState(State newState)

@@ -76,7 +76,8 @@ namespace ElToro
             dirToPlayer.y = 0;
             BL.transform.forward = dirToPlayer;
             //Cue audio file of a grunt
-
+            SoundEffectsManager.instance.PlayAudioClip(BL.rangedRoar, true);
+            SoundEffectsManager.instance.PlayAudioClip(BL.rocks, true);
             //ranged attack animation (with function trigger)
             BL.anim.SetTrigger("rangedAttack");
             BL.transform.forward = dirToPlayer;
