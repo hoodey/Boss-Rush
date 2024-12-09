@@ -10,13 +10,23 @@ namespace ElToro
         public List<ParticleCollisionEvent> collisionEvents;
 
 
+
         // Start is called before the first frame update
         void Start()
         {
             part = GetComponent<ParticleSystem>();
             collisionEvents = new List<ParticleCollisionEvent>();
+            StartCoroutine(UltimateAttackProcess());
         }
 
+        IEnumerator UltimateAttackProcess()
+        {
+            part.Play();
+            yield return new WaitForSeconds(5.0f);
+            part.Stop();
+            yield return new WaitForSeconds(5f);
+            Destroy(gameObject);
+        }
 
         void OnParticleCollision(GameObject other)
         {

@@ -19,6 +19,7 @@ namespace ElToro
         [SerializeField] GameObject rangedObject;
         [SerializeField] public Transform kickSpot;
         [SerializeField] GameObject fireBreath;
+        [SerializeField] Transform fireBreathSpot;
 
         public float maxHealth = 100f;
         public Transform player;
@@ -38,7 +39,8 @@ namespace ElToro
         public int kickCounter = 0;
         public int hitsToKick = 0;
         public float ultimateAttackCD = 5.0f;
-        public ParticleSystem firePS;
+        public float lastFireBreath = 0f;
+        public bool isDead = false;
         Phase currentPhase;
 
         public float NavSpeed;
@@ -60,8 +62,6 @@ namespace ElToro
             myStateMachine.ChangeState(new IdleState(myStateMachine, this));
 
             myDamage = GetComponent<Damageable>();
-
-            firePS = fireBreath.GetComponent<ParticleSystem>();
         }
 
         // Update is called once per frame
@@ -71,7 +71,6 @@ namespace ElToro
             anim.SetFloat("speed", NavSpeed);
             myStateMachine.Update();
             LastSwing += Time.deltaTime;
-            Debug.Log(agent.speed);
 
             if (myDamage.GetCurrentHealth()/maxHealth >= 0.75f && currentPhase != Phase.ONE)
             {
@@ -91,8 +90,14 @@ namespace ElToro
                 currentPhase = Phase.THREE;
                 agent.speed = 9f;
                 meleePursueRange = 15f;
+                meleeSwingCooldown = 0.5f;
+                hitsToKick = 10;
             }
 
+            if (currentPhase == Phase.THREE)
+            {
+                lastFireBreath += Time.deltaTime;
+            }
         }
 
         private void FixedUpdate()
@@ -156,7 +161,7 @@ namespace ElToro
             {
                 return;
             }
-            if (kickCounter >= hitsToKick)
+            if (kickCounter >= hitsToKick && !isDead)
             {
                 kickCounter = 0;
                 kicking = true;
@@ -176,9 +181,8 @@ namespace ElToro
             { 
                 return; 
             }
-            if (LastSwing >= meleeSwingCooldown)
+            if (LastSwing >= meleeSwingCooldown && !isDead)
             {
-                Debug.Log("First Attack");
                 myStateMachine.ChangeState(new MeleeState(myStateMachine, this));
                 LastSwing = 0f;
             }
@@ -191,9 +195,8 @@ namespace ElToro
             {
                 return;
             }
-            if (LastSwing >= meleeSwingCooldown)
+            if (LastSwing >= meleeSwingCooldown && !isDead)
             {
-                Debug.Log("Attacking again");
                 myStateMachine.ChangeState(new MeleeState(myStateMachine, this));
                 LastSwing = 0f;
             }
@@ -201,7 +204,8 @@ namespace ElToro
 
         public void OnExitMelee()
         {
-            StartCoroutine(MeleeCooldown());
+            if (!isDead)
+                StartCoroutine(MeleeCooldown());
         }
 
         public void HitBoxOn()
@@ -231,22 +235,17 @@ namespace ElToro
 
         public void UltimateAttack()
         {
-            StartCoroutine(UltimateAttackProcess());
+            if (lastFireBreath >= ultimateAttackCD)
+            {
+                GameObject f = Instantiate(fireBreath, fireBreathSpot.position, fireBreathSpot.rotation);
+                StartCoroutine(UltimateAttackProcess());
+            }
         }
 
         IEnumerator UltimateAttackProcess()
         {
-            //float fireBreathDuration = 0.0f;
-            firePS.Play();
-            /*while (fireBreathDuration < 5.0f)
-            {
-                var dirToPlayer = (player.transform.position - transform.position).normalized;
-                dirToPlayer.y = 0;
-                transform.forward = dirToPlayer;
-                fireBreathDuration += 0.1f;
-            }*/
-                yield return new WaitForSeconds(5.0f);
-            firePS.Stop();
+            yield return new WaitForSeconds(5.0f);
+            lastFireBreath = 0.0f;
             myStateMachine.ChangeState(new PatrolState(myStateMachine, this));
         }
 
@@ -276,13 +275,17 @@ namespace ElToro
             {
                 myStateMachine.ChangeState(new PursueState(myStateMachine, this));
             }
-            //anim.SetTrigger("gotHit");
-
-            //Set variables according to phase
-            
+            //Animation for being hit (was causing bugs)
+            //anim.SetTrigger("gotHit");            
 
             //Handle queueing up a kick
             kickCounter++;
+        }
+
+        public void die()
+        {
+            isDead = true;
+            myStateMachine.ChangeState(new DeathState(myStateMachine, this));
         }
 
         public Phase GetCurrentPhase()

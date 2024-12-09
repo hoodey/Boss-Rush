@@ -76,6 +76,82 @@ MonoBehaviour:
   OnSuccessfulHit:
     m_PersistentCalls:
       m_Calls: []
+--- !u!1 &2454416508443857176
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6416284528839353988}
+  - component: {fileID: 7721675600578385184}
+  - component: {fileID: 3137643316555456459}
+  m_Layer: 9
+  m_Name: foot_logic
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6416284528839353988
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2454416508443857176}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.065833844, y: -0.030175833, z: -0.41558334, w: 0.9066674}
+  m_LocalPosition: {x: -0.5381974, y: -1.0042353, z: 0.055476084}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4414871115679569594}
+  m_LocalEulerAnglesHint: {x: -8.306, y: 0, z: -49.25}
+--- !u!65 &7721675600578385184
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2454416508443857176}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Size: {x: 0.2384136, y: 0.4497406, z: 0.88770807}
+  m_Center: {x: -0.41827255, y: 1.1477686, z: 0.12657505}
+--- !u!114 &3137643316555456459
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2454416508443857176}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: add67c2fb5c90394ba186a0c0898deb4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageAmount: 2
+  knockbackForce: 100
+  hitEffectPrefab: {fileID: 6066822027452868663, guid: 23b574f9c07fefb48a1fe18fe736683a, type: 3}
+  hitSounds: {fileID: 11400000, guid: b098b77403c117748926aad79cd8fd49, type: 2}
+  OnContact:
+    m_PersistentCalls:
+      m_Calls: []
+  OnSuccessfulHit:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &4414871115646680189
 GameObject:
   m_ObjectHideFlags: 0
@@ -309,7 +385,8 @@ Transform:
   m_LocalPosition: {x: -0.08043085, y: 0.054635666, z: -1.8152839e-10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 6416284528839353988}
   m_Father: {fileID: 4414871115779392495}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4414871115696605941
@@ -3603,7 +3680,8 @@ Transform:
   m_LocalPosition: {x: -0.12147602, y: -2.842171e-16, z: -2.993694e-16}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 6156850366063457711}
   m_Father: {fileID: 4414871116045700306}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4414871117101131174
@@ -3952,6 +4030,7 @@ Transform:
   - {fileID: 4414871117568350222}
   - {fileID: 4414871116264575565}
   - {fileID: 7852810778313606566}
+  - {fileID: 3616441572591348537}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &4414871117303439920
@@ -3989,15 +4068,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   patrolRange: 20
   rangedObject: {fileID: 3931190277378536239, guid: 36f88a047430f4e4780b27e200f61cb3, type: 3}
+  kickSpot: {fileID: 0}
+  fireBreath: {fileID: 7138829654050736963, guid: 1d52b58eabb062442a3b8fb733eb4cf9, type: 3}
+  fireBreathSpot: {fileID: 6156850366063457711}
+  maxHealth: 100
   player: {fileID: 0}
   agent: {fileID: 0}
   anim: {fileID: 0}
   rb: {fileID: 0}
+  myDamage: {fileID: 0}
   PlayerInSight: 0
   meleeWeapon: {fileID: 5295247235575296521}
-  meleeSwingCooldown: 5
+  foot: {fileID: 7721675600578385184}
+  meleeSwingCooldown: 2
+  rangedAttackCD: 3
   LastSwing: 0
   meleePursueRange: 30
+  kicking: 0
+  kickCounter: 0
+  hitsToKick: 5
+  ultimateAttackCD: 5
+  lastFireBreath: 0
+  isDead: 0
   NavSpeed: 0
 --- !u!195 &1202318764469504219
 NavMeshAgent:
@@ -4074,10 +4166,34 @@ MonoBehaviour:
         m_CallState: 2
   OnHit:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 4537132852034373435}
+        m_TargetAssemblyTypeName: ElToro.BossLogic, Assembly-CSharp
+        m_MethodName: WhenHit
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   OnDeath:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 4537132852034373435}
+        m_TargetAssemblyTypeName: ElToro.BossLogic, Assembly-CSharp
+        m_MethodName: die
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   OnHealthChanged:
     m_PersistentCalls:
       m_Calls:
@@ -4795,6 +4911,136 @@ Transform:
   - {fileID: 4414871116607628141}
   - {fileID: 4414871117266451937}
   m_Father: {fileID: 4414871116260526974}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &6851688234496718706
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3616441572591348537}
+  - component: {fileID: 8830345603442869582}
+  - component: {fileID: 4203513972013600575}
+  m_Layer: 10
+  m_Name: Kick Sensor
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3616441572591348537
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6851688234496718706}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: 0.00027276573, z: -0, w: 1}
+  m_LocalPosition: {x: -0.01, y: 0.596667, z: -0.09}
+  m_LocalScale: {x: 0.41666672, y: 0.4166667, z: 0.41666672}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4414871117303439923}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!135 &8830345603442869582
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6851688234496718706}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 15
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &4203513972013600575
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6851688234496718706}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ea31f22bf4791449be64ed8eea37ef1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnEnter:
+    m_PersistentCalls:
+      m_Calls: []
+  OnStay:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4537132852034373435}
+        m_TargetAssemblyTypeName: ElToro.BossLogic, Assembly-CSharp
+        m_MethodName: OnStayKick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnExit:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4537132852034373435}
+        m_TargetAssemblyTypeName: ElToro.BossLogic, Assembly-CSharp
+        m_MethodName: OnExitKick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!1 &6928859814314300192
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6156850366063457711}
+  m_Layer: 7
+  m_Name: FireBreathSpot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6156850366063457711
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6928859814314300192}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.68693846, y: 0.16767733, z: 0.16767721, w: 0.68693835}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4414871117098875376}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7050468650257119273
 GameObject:

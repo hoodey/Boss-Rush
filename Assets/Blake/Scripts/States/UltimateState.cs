@@ -39,6 +39,7 @@ namespace ElToro
         {
             //Stop patrol movement
             BL.agent.ResetPath();
+            BL.agent.velocity = new Vector3(0.0f, 0.0f, 0.0f);
             //Turn to player
             var dirToPlayer = (BL.player.transform.position - BL.transform.position).normalized;
             dirToPlayer.y = 0;

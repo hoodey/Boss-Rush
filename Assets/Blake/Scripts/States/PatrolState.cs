@@ -44,6 +44,10 @@ namespace ElToro
             {
                 machine.ChangeState(new RangedState(machine, BL));
             }
+            else if (BL.PlayerInSight && BL.GetCurrentPhase() == BossLogic.Phase.THREE && BL.lastFireBreath <= 5.0f)
+            {
+                RandomPatrol();
+            }
             else if (BL.PlayerInSight && BL.GetCurrentPhase() == BossLogic.Phase.THREE)
             {
                 machine.ChangeState(new UltimateState(machine, BL));
