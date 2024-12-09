@@ -51,7 +51,6 @@ namespace ElToro
             else if (!BL.PlayerInSight)
             {
                 deAggroTimer += Time.deltaTime;
-                Debug.Log(deAggroTimer);
                 if (deAggroTimer >= attackCD)
                 {
                     machine.ChangeState(new PatrolState(machine, BL));

@@ -22,9 +22,9 @@ namespace ElToro
             if (other.GetComponent<Damageable>())
             {
                 //Shoot the player up and away
-                var trajectory = other.transform.forward;
-                Quaternion rotation = Quaternion.AngleAxis(45, Vector3.right); // Rotate 45 degrees around the right axis
-                trajectory = rotation * -trajectory; // Apply rotation to the forward vector
+                var trajectory = -other.transform.forward;
+                Quaternion rotation = Quaternion.AngleAxis(45, other.transform.right); // Rotate 45 degrees around the right axis
+                trajectory = rotation * trajectory; // Apply rotation to the forward vector
                 Damage kick = new Damage();
                 kick.amount = damageAmount;
                 kick.direction = trajectory;

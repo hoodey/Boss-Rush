@@ -31,6 +31,7 @@ namespace ElToro
             {
                 kickAnim = true;
                 BL.agent.ResetPath();
+                BL.agent.velocity = Vector3.zero;
                 //Turn to player and turn player
                 
                 var dirToPlayer = (BL.player.transform.position - BL.transform.position).normalized;
