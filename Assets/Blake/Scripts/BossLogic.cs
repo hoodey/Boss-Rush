@@ -20,6 +20,7 @@ namespace ElToro
         [SerializeField] public Transform kickSpot;
         [SerializeField] GameObject fireBreath;
         [SerializeField] Transform fireBreathSpot;
+        [SerializeField] public GameManager gm;
 
         public float maxHealth = 100f;
         public Transform player;

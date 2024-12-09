@@ -21,6 +21,7 @@ namespace ElToro
             BL.agent.ResetPath();
             BL.agent.velocity = new Vector3(0f, 0f, 0f);
             BL.anim.SetTrigger("died");
+            BL.gm.GoToNextLevel();
         }
 
         public override void OnUpdate()
